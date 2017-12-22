@@ -1,15 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
+import Button from 'material-ui/Button';
 import MenuIcon from 'material-ui-icons/Menu';
 import AccountCircle from 'material-ui-icons/AccountCircle';
-import Switch from 'material-ui/Switch';
-import { FormControlLabel, FormGroup } from 'material-ui/Form';
 import Menu, { MenuItem } from 'material-ui/Menu';
+import { connect } from 'react-redux';
+import { CognitoState } from 'react-cognito';
 
 const styles = {
   root: {
@@ -26,12 +28,8 @@ const styles = {
 
 class MenuAppBar extends React.Component {
   state = {
-    auth: true,
+    auth_state: '',
     anchorEl: null,
-  };
-
-  handleChange = (event, checked) => {
-    this.setState({ auth: checked });
   };
 
   handleMenu = event => {
@@ -42,21 +40,17 @@ class MenuAppBar extends React.Component {
     this.setState({ anchorEl: null });
   };
 
+  isLoggedIn = () => {
+    return this.props.auth_state == CognitoState.LOGGED_IN || this.props.auth_state == CognitoState.AUTHENTICATED;
+  }
+
   render() {
     const { classes } = this.props;
-    const { auth, anchorEl } = this.state;
+    const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
     return (
       <div className={classes.root}>
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" />
-            }
-            label={auth ? 'Logout' : 'Login'}
-          />
-        </FormGroup>
         <AppBar position="static">
           <Toolbar>
             <IconButton className={classes.menuButton} color="contrast" aria-label="Menu">
@@ -65,7 +59,7 @@ class MenuAppBar extends React.Component {
             <Typography type="title" color="inherit" className={classes.flex}>
               Tekata.io
             </Typography>
-            {auth && (
+            {this.isLoggedIn() && (
               <div>
                 <IconButton
                   aria-owns={open ? 'menu-appbar' : null}
@@ -94,6 +88,11 @@ class MenuAppBar extends React.Component {
                 </Menu>
               </div>
             )}
+            {!this.isLoggedIn() && (
+              <div>
+                <Link to="/login"><Button>Login</Button></Link>
+              </div>
+            )}
           </Toolbar>
         </AppBar>
       </div>
@@ -102,7 +101,14 @@ class MenuAppBar extends React.Component {
 }
 
 MenuAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
+  auth_state: PropTypes.string,
+  auth_user: PropTypes.object,
+  auth_attributes: PropTypes.object
 };
+const mapStateToProps = state => ({
+  auth_state: state.cognito.state,
+  auth_user: state.cognito.user,
+  auth_attributes: state.cognito.attributes,
+});
 
-export default withStyles(styles)(MenuAppBar);
+export default withStyles(styles)(connect(mapStateToProps, null)(MenuAppBar));

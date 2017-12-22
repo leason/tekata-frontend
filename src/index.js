@@ -6,15 +6,16 @@ import registerServiceWorker from './registerServiceWorker';
 import { combineReducers, createStore } from 'redux';
 import { setupCognito, cognito } from 'react-cognito';
 import config from './config.json';
+import { Provider } from 'react-redux'
 
 const reducers = combineReducers({
     cognito,
 });
 
-let store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+let accountStore = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 // config.group = 'admins'; // Uncomment this to require users to be in a group 'admins'
-setupCognito(store, config);
+setupCognito(accountStore, config);
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Provider store={accountStore}><App /></Provider>, document.getElementById('root'));
 registerServiceWorker();

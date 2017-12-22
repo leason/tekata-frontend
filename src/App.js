@@ -4,10 +4,13 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import {
   BrowserRouter as Router,
-  Route,
-  Link
+  Route
 } from 'react-router-dom';
+import {
+  Login,
+} from 'react-cognito';
 import TeamDojo from './TeamDojo.js'
+import LoginForm from './account/LoginForm.js'
 
 const RegisterPage = () => (
   <Grid xs="12">
@@ -17,6 +20,17 @@ const RegisterPage = () => (
     </Paper>
   </Grid>
 );
+
+const LoginPage = () => (
+  <Grid xs="12">
+    <MenuAppBar />
+    <Paper>
+      <Login>
+        <LoginForm />
+      </Login>
+    </Paper>
+  </Grid>
+)
 
 const LandingPage = () => (
   <Grid item xs="12">
@@ -35,6 +49,7 @@ class App extends Component {
         <div>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/register" component={RegisterPage} />
+          <Route exact path="/login" component={LoginPage} />
         </div>
       </Router>
     );
