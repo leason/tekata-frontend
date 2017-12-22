@@ -30,7 +30,7 @@ const LoginPage = () => (
       </Login>
     </Paper>
   </Grid>
-)
+);
 
 const LandingPage = () => (
   <Grid item xs="12">

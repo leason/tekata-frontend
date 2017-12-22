@@ -11,7 +11,7 @@ import MenuIcon from 'material-ui-icons/Menu';
 import AccountCircle from 'material-ui-icons/AccountCircle';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import { connect } from 'react-redux';
-import { CognitoState } from 'react-cognito';
+import { CognitoState, Logout } from 'react-cognito';
 
 const styles = {
   root: {
@@ -85,6 +85,7 @@ class MenuAppBar extends React.Component {
                 >
                   <MenuItem onClick={this.handleClose}>Profile</MenuItem>
                   <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                  <Logout><MenuItem>Logout</MenuItem></Logout>
                 </Menu>
               </div>
             )}
