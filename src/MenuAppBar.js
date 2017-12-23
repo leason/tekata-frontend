@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect, Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
@@ -84,8 +84,8 @@ class MenuAppBar extends React.Component {
                   onClose={this.handleClose}
                 >
                   <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                  <Logout><MenuItem>Logout</MenuItem></Logout>
+                  <MenuItem><NavLink to="/profile">My account</NavLink></MenuItem>
+                  <Logout onLogout={() => <Redirect to="/" />}><MenuItem>Logout</MenuItem></Logout>
                 </Menu>
               </div>
             )}

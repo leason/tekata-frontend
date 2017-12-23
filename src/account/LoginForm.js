@@ -1,5 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Grid from 'material-ui/Grid';
+import Paper from 'material-ui/Paper';
+import TextField from 'material-ui/TextField'
+import Button from 'material-ui/Button'
 
 class LoginForm extends React.Component {
 
@@ -30,19 +34,18 @@ class LoginForm extends React.Component {
   }
 
   render = () => (
-    <form onSubmit={this.onSubmit}>
-      <div>{this.props.error}</div>
-      <div>{this.state.email}</div>
-      <label>
-        Username
-        <input placeholder="Username" value={this.state.username} onChange={this.changeUsername} required />
-      </label>
-      <label>
-        Password
-        <input placeholder="Password" onChange={this.changePassword} type="password" required />
-      </label>
-      <button type="submit">Sign in</button>
-    </form>
+    <Grid container>
+      <Grid item xs={12}>
+        <Grid container justify="center">
+          <form onSubmit={this.onSubmit}>
+            <div>{this.props.error}</div>
+            <TextField id="username" label="Username" value={this.state.username} onChange={this.changeUsername} /><br />
+            <TextField id="password" label="Password" onChange={this.changePassword} type="password" autoComplete="current-password" /><br />
+            <Button type="submit" label="Login">Sign in</Button>
+          </form>
+        </Grid>
+      </Grid>
+    </Grid>
   )
 }
 LoginForm.propTypes = {

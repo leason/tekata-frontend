@@ -11,9 +11,10 @@ import {
 } from 'react-cognito';
 import TeamDojo from './TeamDojo.js'
 import LoginForm from './account/LoginForm.js'
+import ProfileForm from './account/ProfileForm.js'
 
 const RegisterPage = () => (
-  <Grid xs="12">
+  <Grid item xs={12}>
     <MenuAppBar />
     <Paper>
       Register here
@@ -22,7 +23,7 @@ const RegisterPage = () => (
 );
 
 const LoginPage = () => (
-  <Grid xs="12">
+  <Grid item xs={12}>
     <MenuAppBar />
     <Paper>
       <Login>
@@ -32,8 +33,19 @@ const LoginPage = () => (
   </Grid>
 );
 
+const ProfilePage = () => (
+  <Grid item xs={12}>
+    <MenuAppBar />
+    <Paper>
+      <Login>
+        <ProfileForm />
+      </Login>
+    </Paper>
+  </Grid>
+)
+
 const LandingPage = () => (
-  <Grid item xs="12">
+  <Grid item xs={12}>
     <MenuAppBar />
     <Paper>
       Welcome to Tekata.io
@@ -50,6 +62,7 @@ class App extends Component {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/register" component={RegisterPage} />
           <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/profile" component={ProfilePage} />
         </div>
       </Router>
     );
