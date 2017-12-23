@@ -36,13 +36,15 @@ class LoginForm extends React.Component {
   render = () => (
     <Grid container>
       <Grid item xs={12}>
-        <Grid container justify="center">
-          <form onSubmit={this.onSubmit}>
-            <div>{this.props.error}</div>
-            <TextField id="username" label="Username" value={this.state.username} onChange={this.changeUsername} /><br />
-            <TextField id="password" label="Password" onChange={this.changePassword} type="password" autoComplete="current-password" /><br />
-            <Button type="submit" label="Login">Sign in</Button>
-          </form>
+        <Grid container spacing={40} justify="center">
+          <div style={{padding: 20}}>
+            <form onSubmit={this.onSubmit}>
+              <div>{this.props.error}</div>
+              <TextField id="username" label="Username" value={this.state.username} onChange={this.changeUsername} /><br />
+              <TextField id="password" label="Password" onChange={this.changePassword} type="password" autoComplete="current-password" /><br />
+              <Button type="submit" label="Login">Sign in</Button>
+            </form>
+            </div>
         </Grid>
       </Grid>
     </Grid>

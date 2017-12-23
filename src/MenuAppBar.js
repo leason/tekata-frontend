@@ -83,7 +83,6 @@ class MenuAppBar extends React.Component {
                   open={open}
                   onClose={this.handleClose}
                 >
-                  <MenuItem onClick={this.handleClose}>Profile</MenuItem>
                   <MenuItem><NavLink to="/profile">My account</NavLink></MenuItem>
                   <Logout onLogout={() => <Redirect to="/" />}><MenuItem>Logout</MenuItem></Logout>
                 </Menu>
@@ -91,7 +90,7 @@ class MenuAppBar extends React.Component {
             )}
             {!this.isLoggedIn() && (
               <div>
-                <Link to="/login"><Button>Login</Button></Link>
+                <Link to="/register"><Button>Register</Button></Link>&nbsp;<Link to="/login"><Button>Login</Button></Link>
               </div>
             )}
           </Toolbar>
