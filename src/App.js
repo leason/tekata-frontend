@@ -7,12 +7,14 @@ import {
   Route
 } from 'react-router-dom';
 import {
-  Login
+  Login,
+  Confirm
 } from 'react-cognito';
 import TeamDojo from './TeamDojo.js'
 import LoginForm from './account/LoginForm.js'
 import ProfileForm from './account/ProfileForm.js'
 import RegisterForm from './account/RegisterForm.js'
+import ConfirmForm from './account/ConfirmForm.js'
 
 const RegisterPage = () => (
   <Grid item xs={12}>
@@ -22,6 +24,17 @@ const RegisterPage = () => (
     </Paper>
   </Grid>
 );
+
+const ConfirmPage = () => (
+  <Grid item xs={12}>
+    <MenuAppBar />
+    <Paper>
+      <Confirm>
+        <ConfirmForm />
+      </Confirm>
+    </Paper>
+  </Grid>
+)
 
 const LoginPage = () => (
   <Grid item xs={12}>
@@ -64,6 +77,7 @@ class App extends Component {
           <Route exact path="/register" component={RegisterPage} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/profile" component={ProfilePage} />
+          <Route exact path="/confirm" component={ConfirmPage} />
         </div>
       </Router>
     );

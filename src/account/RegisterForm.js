@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import { withRouter } from 'react-router';
@@ -39,7 +38,7 @@ class RegisterForm extends React.Component {
       (action) => {
         console.log(action);
         store.dispatch(action);
-        this.props.history.push('/');
+        this.props.history.push('/confirm');
       },
       error => this.setState({ error }));
   }
