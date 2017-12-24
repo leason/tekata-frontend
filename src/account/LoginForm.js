@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
+import { withRouter } from 'react-router';
 
 class LoginForm extends React.Component {
 
@@ -15,9 +16,17 @@ class LoginForm extends React.Component {
     };
   }
 
+  static propTypes = {
+    history: PropTypes.object.isRequired
+  }
+
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.onSubmit(this.state.username, this.state.password);
+    this.props.onSubmit(this.state.username, this.state.password)
+      .then((user) => {
+        console.log(user);
+        this.props.history.push('/profile')
+      });
   }
 
   changeUsername = (event) => {
@@ -57,4 +66,4 @@ LoginForm.propTypes = {
   email: PropTypes.string,
 };
 
-export default LoginForm;
+export default withRouter(LoginForm);
