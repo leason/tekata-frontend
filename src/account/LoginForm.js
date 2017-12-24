@@ -44,7 +44,7 @@ class LoginForm extends React.Component {
               <TextField id="password" label="Password" onChange={this.changePassword} type="password" autoComplete="current-password" /><br />
               <Button type="submit" label="Login">Sign in</Button>
             </form>
-            </div>
+          </div>
         </Grid>
       </Grid>
     </Grid>

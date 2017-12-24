@@ -7,17 +7,18 @@ import {
   Route
 } from 'react-router-dom';
 import {
-  Login,
+  Login
 } from 'react-cognito';
 import TeamDojo from './TeamDojo.js'
 import LoginForm from './account/LoginForm.js'
 import ProfileForm from './account/ProfileForm.js'
+import RegisterForm from './account/RegisterForm.js'
 
 const RegisterPage = () => (
   <Grid item xs={12}>
     <MenuAppBar />
     <Paper>
-      Register here
+      <RegisterForm />
     </Paper>
   </Grid>
 );
